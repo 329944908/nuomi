@@ -51,3 +51,45 @@ function doCurl($url,$type=0,$data=[]){
 	curl_close($ch);
 	return $output;
 }
+/**
+ * 通用分页样式
+ */
+function pagination($obj){
+	if($obj){
+		return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5-nuomi">'.
+					$obj->render().
+				'</div>';
+	}else{
+		return '';
+	}
+}
+//分割字符串得到当前二级城市
+function getSeCityName($path){
+	if(!empty($path)){
+		$citys = explode(',', $path);
+		if(!empty($citys[1])){
+			$city_id = $citys[1];
+		}else{
+			$city_id = $citys[0];
+		}
+		return model('City')->where('id',$city_id)->value('name');
+	}
+}
+function getSeCategoryName($path){
+	if(!empty($path)){
+		$categorys = explode(',', $path);
+		if(!empty($categorys[1])){
+			$category_childs = $categorys[1];
+			$category_childs_ids = explode('|', $category_childs);
+			$str = '';
+			foreach ($category_childs_ids as $value) {
+				$name = model('Category')->where('id',$value)->value('name');
+				$str=$str.'||'.$name;
+			}
+			return $str;
+		}else{
+			$category_id = $categorys[0];
+			return model('Category')->where('id',$category_id)->value('name');
+		}
+	}
+}

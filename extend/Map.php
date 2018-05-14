@@ -4,8 +4,12 @@
 */
 class Map
 {
-	/*
-	根据地址获取经纬度
+	/**
+	 * @author Yanyuxuan
+	 * @email    329944908@qq.com
+	 * @DateTime 2018-05-14
+	 * @param    [string]           $address [地址]
+	 * @return   [array]                    [经纬度]
 	 */
 	public static function getLngLat($address){
 		$data = [
@@ -15,7 +19,11 @@ class Map
 		];
 		$url = config('map.baidu_map_url').config('map.geocoder').'?'.http_build_query($data);
 		$result = doCurl($url);
-		return $result;
+		if($result){
+			return json_decode($result,true);
+		}else{
+			return [];
+		}
 	}
 	/*
 	http://api.map.baidu.com/staticimage/v2

@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 use think\Controller;
-class Category extends Controller
+class Category extends Common
 {
 	private $obj;
 	public function _initialize(){

@@ -8,6 +8,7 @@ class Index extends Controller
         return $this->fetch();
     }
     public function welcome(){
+        //\phpmailer\Email::send('1329944908@qq.com','das','wafds');
     	return "欢迎来到后台！";
     }
     // public function test(){

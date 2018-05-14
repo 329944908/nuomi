@@ -34,4 +34,14 @@ class Category extends Model
 		];
 		return $this->where($where)->order($order)->paginate();
 	}
+	public function getCategorysByParentId($parent_id=0){
+		$where = [
+			'parent_id' =>$parent_id,
+			'status'    =>['neq',-1],
+		];
+		$order = [
+			'id' =>'desc'
+		];
+		return $this->where($where)->order($order)->select();
+	}
 }
