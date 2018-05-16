@@ -11,6 +11,10 @@ class Bis extends Common
 		$bises = $this->obj->where('status',1)->paginate();
 		return $this->fetch('',['bises'=>$bises]);
 	}
+    public function dellist(){
+        $bises = $this->obj->where('status',-1)->paginate();
+        return $this->fetch('',['bises'=>$bises]);
+    }
 	public function apply(){
 		$bises = $this->obj->where('status',0)->paginate();
 		return $this->fetch('',['bises'=>$bises]);
@@ -33,7 +37,9 @@ class Bis extends Common
 	        	$content = "您提交的入驻申请平台方审核通过";
 	        }elseif ($bis['status']==2) {
 	        	$content = "您提交的入驻申请平台方审核不通过";
-	        }
+	        }elseif ($bis['status']==2) {
+                $content = "您提交的入驻申请平台方审核已被删除";
+            }
 	        \phpmailer\Email::send($bis['email'],$title, $content);
             $this->success('更新成功');
         }else{

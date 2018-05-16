@@ -4,6 +4,8 @@ use think\Validate;
 class BisLocation extends Validate
 {
     protected $rule = [
+        'id'   =>'require',
+        'status'=>'require',
         'name' => 'require|max:25',
         'logo' => 'require',
         'tel' => 'require',
@@ -18,5 +20,6 @@ class BisLocation extends Validate
     // 场景设置
     protected  $scene = [
         'add' => ['name','logo', 'category_id', 'city_id', 'open_time', ],
+        'status'=> ['id','status' ],
     ];
 }
