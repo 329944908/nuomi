@@ -49,25 +49,4 @@ class Category extends Common
     		$this->error('更新失败');
     	}
     }
-    public function listorder($id,$listorder){
-        $res = $this->obj->save(['listorder'=>$listorder],['id'=>$id]);
-        if($res){
-            $this->result($_SERVER['HTTP_REFERER'],1,'success');
-        }else{
-             $this->result($_SERVER['HTTP_REFERER'],0,'error');
-        }
-    }
-    public function status(){
-        $data = input('get.');
-        $validate = validate('Category');
-        if(!$validate->scene('status')->check($data)){
-            $this->error($validate->getError());
-        }
-        $res = $this->obj->save(['status'=>$data['status']],['id'=>$data['id']]);
-        if($res){
-            $this->success('更新成功');
-        }else{
-             $this->success('更新失败');
-        }
-    }
 }

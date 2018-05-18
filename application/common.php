@@ -93,3 +93,15 @@ function getSeCategoryName($path){
 		}
 	}
 }
+//根据Location_ids获取名字
+function getLocationsName($path){
+	if(!empty($path)){
+		$locations = explode(',', $path);
+		$str = '';
+		foreach ($locations as $value) {
+			$name = model('BisLocation')->where('id',$value)->value('name');
+			$str=$str.'|-|'.$name;
+		}
+		return $str;
+	}
+}

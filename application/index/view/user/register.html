@@ -26,10 +26,10 @@
         </div>
 
         <div class="content">
-            <form>
+            <form method="post" action="{:url('user/register')}">
                 <p class="pass-form-item">
                     <label class="pass-label">用户名</label>
-                    <input type="text" name="userName" class="pass-text-input" placeholder="请设置用户名">
+                    <input type="text" name="username" class="pass-text-input" placeholder="请设置用户名">
                 </p>
                 <p class="pass-form-item">
                     <label class="pass-label">邮箱号</label>
@@ -42,11 +42,12 @@
                 </p>
                 <p class="pass-form-item">
                     <label class="pass-label">确认密码</label>
-                    <input type="text" name="password" class="pass-text-input" placeholder="请设置登录密码">
+                    <input type="text" name="repassword" class="pass-text-input" placeholder="请设置登录密码">
                 </p>
                 <p class="pass-form-item">
                     <label class="pass-label">验证码</label>
-                    <input type="text" name="verifyCode" class="pass-text-input " placeholder="请输入验证码">
+                    <input type="text" name="verifycode" class="pass-text-input " placeholder="请输入验证码">
+                    <div>{:captcha_img()}</div>
                 </p>
                 
                 <p class="pass-form-item">

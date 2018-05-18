@@ -3,5 +3,38 @@ namespace app\admin\controller;
 use think\Controller;
 class Common extends Controller
 {
-	
+	/**
+	 * 修改状态
+	 */
+    public function status() {
+        // 获取值
+        $data = input('get.');
+        // 利用tp5 validate 去做严格检验  id  status
+        if(empty($data['id'])) {
+            $this->error('id不合法');
+        }
+        if(!is_numeric($data['status'])) {
+            $this->error('status不合法');
+        }
+        // 获取控制器
+        $model = request()->controller();
+        $res = model($model)->save(['status'=>$data['status']], ['id'=>$data['id']]);
+        if($res) {
+            $this->success('更新成功');
+        }else {
+            $this->error('更新失败');
+        }
+    }
+    /*
+    排序
+     */
+    public function listorder($id,$listorder){
+    	$model = request()->controller();
+        $res = model($model)->save(['listorder'=>$listorder],['id'=>$id]);
+        if($res){
+            $this->result($_SERVER['HTTP_REFERER'],1,'success');
+        }else{
+             $this->result($_SERVER['HTTP_REFERER'],0,'error');
+        }
+    }
 }
