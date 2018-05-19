@@ -8,6 +8,7 @@ class User extends Controller
         //return [1,2];
         // 获取session
         $user = session('user','', 'nuomi');
+        //var_dump($user);die();
         if($user && $user['id']) {
            $this->redirect(url('index/index'));
         }

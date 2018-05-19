@@ -26,6 +26,7 @@ class Deal extends Base
                 'image' => $data['image'],
                 'category_id' => $data['category_id'],
                 'se_category_id' => empty($data['se_category_id']) ? '' : implode(',', $data['se_category_id']),
+                'se_city_id' => $data['se_city_id'],
                 'city_id' => $data['city_id'],
                 'location_ids' => empty($data['location_ids']) ? '' : implode(',', $data['location_ids']),
                 'start_time' => strtotime($data['start_time']),

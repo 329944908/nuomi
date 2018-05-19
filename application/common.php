@@ -105,3 +105,13 @@ function getLocationsName($path){
 		return $str;
 	}
 }
+//根据ids查找店铺名
+function countLocation($ids){
+	if(!$ids){
+		return 1;
+	}
+	if(preg_match('/,/', $ids)){
+		$arr = explode(',', $ids);
+		return count($arr);
+	}
+}	
