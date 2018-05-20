@@ -1,6 +1,8 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
+use think\Session;
+use app\common\model\User as UserM;
 class User extends Controller
 {
     public function login()
@@ -69,5 +71,20 @@ class User extends Controller
     public function logout() {
         session(null, 'nuomi');
         $this->redirect(url('user/login'));
+    }
+
+    public function a () {
+        $userM = new UserM;
+        $user = $userM->where(array('id'=>1))->find();
+        $data = serialize($user);
+        $new = unserialize($data);
+        session('user', $data, 'nuomi');
+        var_dump($new->username);die();
+    }
+
+    public function b() {
+         $user = session('user','', 'nuomi');
+         $user = unserialize($user);
+         var_dump($user->username);
     }
 }

@@ -29,12 +29,12 @@
         <div class="content-container">
             <div class="no-recom-container">
                 <div class="floor-content-start">
-                    
+                    <?php foreach($datas as $value) { ?>
                     <div class="floor-content">
                         <div class="floor-header">
-                            <h3>美食推荐</h3>
+                            <h3>{$value['h3']}</h3>
                             <ul class="reco-words">
-                                {volist name="meishicates" id="vo"}
+                                {volist name="$value['cates']" id="vo"}
                                 <li><a href="{:url('lists/index', ['id'=>$vo.id])}" target="_blank">{$vo.name}</a></li>
                                 {/volist}
 
@@ -42,8 +42,8 @@
                             </ul>
                         </div>
                         <ul class="itemlist eight-row-height">
-                            {if condition="$datas"}
-                                {volist name="datas" id="vo"}
+                            {if condition="$value['data']"}
+                                {volist name="$value['data']" id="vo"}
                                 <li class="j-card">
                                     <a>
                                         <div class="imgbox">
@@ -85,7 +85,7 @@
                             {/if}
                         </ul>
                     </div>
-
+                    <?php } ?>
                 </div>
             </div>
         </div>
