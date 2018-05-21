@@ -56,8 +56,9 @@ function doCurl($url,$type=0,$data=[]){
  */
 function pagination($obj){
 	if($obj){
+		$params = request()->param();
 		return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5-nuomi">'.
-					$obj->render().
+					$obj->appends($params)->render().
 				'</div>';
 	}else{
 		return '';
@@ -114,4 +115,10 @@ function countLocation($ids){
 		$arr = explode(',', $ids);
 		return count($arr);
 	}
-}	
+}
+//设置订单号	
+function setOrderSn(){
+	list($t1,$t2) = explode(' ', microtime());
+	$t3 = explode('.', $t1*10000);
+	return $t2.$t3[0].(rand(10000,99999));
+}

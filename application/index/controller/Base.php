@@ -10,10 +10,10 @@ class Base extends Controller
         //用户数据
         $this->getCity($citys);
         // 获取首页分类的数据
-        $categorys = $this->getReCategorys();
+        $cats = $this->getReCategorys();
         $this->assign('citys', $citys);
         $this->assign('city', $this->city);
-        $this->assign('categorys', $categorys);
+        $this->assign('cats', $cats);
         //获取控制器名 加载相应css
         $this->assign('controler', strtolower(request()->controller()));
         $this->assign('user', $this->getLoginUser());
