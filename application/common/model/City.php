@@ -28,4 +28,19 @@ class City extends Model
             ->select();
 
     }
+    public function getCitys($parent_id=0){
+		$where = [
+			'parent_id' =>$parent_id,
+			'status'    =>['neq',-1],
+		];
+		$order = [
+			'listorder'=>'desc',
+			'id' =>'desc'
+		];
+		return $this->where($where)->order($order)->paginate();
+	}
+	public function add($data){
+		$data['status'] = 1;
+		return $this->save($data);
+	}
 }

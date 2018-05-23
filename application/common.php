@@ -27,6 +27,24 @@ function status($status){
 	}
 	return $str;
 }
+function user_status($status){
+	if($status==1){
+		$str = "<span class='label label-success radius'>已启用</span>";
+	}elseif($status==0){
+		$str = "<span class='label label-danger radius'>已停用</span>";
+	}else{
+		$str = "<span class='label label-danger radius'>删除</span>";
+	}
+	return $str;
+}
+function pay_status($status){
+	if($status==1){
+		$str = "<span class='label label-success radius'>支付成功</span>";
+	}elseif($status==0){
+		$str = "<span class='label label-danger radius'>未支付</span>";
+	}
+	return $str;
+}
 /**
  * @author Yanyuxuan
  * @email    329944908@qq.com

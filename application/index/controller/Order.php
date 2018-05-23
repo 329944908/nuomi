@@ -17,9 +17,11 @@ class Order extends Base
 			$this->error('商品不存在');
 		}
 		$deal = $deal->toArray();
+		//var_dump(sprintf('%.2f', $deal['current_price']*5));die();
 		return $this->fetch('',[
 			'count'=>$count,
 			'deal'=>$deal,
+			'controler'=>'pay',
 		]);
 	}
 	public function index(){
@@ -36,7 +38,7 @@ class Order extends Base
 			$this->error('商品不存在');
 		}
 		$deal_count = input('get.deal_count',0,'intval');
-		$total_price = input('get.total_price',0,'intval');
+		$total_price = input('get.total_price');
 		if(empty($_SERVER['HTTP_REFERER'])){
 			$this->error('请求不合法');
 		}
@@ -55,6 +57,6 @@ class Order extends Base
 		}catch(\Exception $e){
 			$this->error('订单处理异常');
 		}
-		$this->redirect(url('pay/index',['id'=>$id]));
+		$this->redirect(url('pay/index',['id'=>$orderId]));
 	}
 }

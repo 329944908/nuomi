@@ -35,14 +35,14 @@
                         </div>
                         <span class="err-wrap j-err-wrap"></span>
                     </td>
-                    <td class="price font14">¥<span class="j-sumPrice">{$deal['current_price']*$count}</span></td>
+                    <td class="price font14">¥<span class="j-sumPrice"><?php printf('%.2f', $deal['current_price']*$count);?></span></td>
                 </tr>
             </tbody>
         </table>
 
         
 
-        <div class="final-price-area">应付总额：<span class="sum">￥<span class="price">{$deal['current_price']*$count}</span></span></div>
+        <div class="final-price-area">应付总额：<span class="sum">￥<span class="price"><?php sprintf('%.2f', $deal['current_price']*$count);?></span></span></div>
 
         <div class="page-button-wrap">
             <a class="o2o_pay btn btn-primary">确认</a>
@@ -63,8 +63,8 @@
             }
             else{
                 $(".buycount-ctrl input").val(num);
-                $(".j-sumPrice").text($("td .font14").text() * num - $(".j-cellActivity span").text());
-                $(".sum .price").text($("td .font14").text() * num - $(".j-cellActivity span").text());
+                $(".j-sumPrice").text($("td .font14").text() *100* num/100 - $(".j-cellActivity span").text());
+                $(".sum .price").text($("td .font14").text()*100 * num/100- $(".j-cellActivity span").text());
                 if(num == 1){
                     $(".buycount-ctrl a").eq(0).addClass("disabled");
                 }

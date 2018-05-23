@@ -8,7 +8,10 @@ class User extends Base
 		return $this->data($data)->allowField(true)->save();
 	}
 	public function getUserByName($name){
-		$user = $this->where(['username'=>$name])->find()->toArray();
+		$user = $this->where(['username'=>$name])->find();
+		if($user){
+			$user =$user->toArray();
+		}
 		return $user;
 	}
 }

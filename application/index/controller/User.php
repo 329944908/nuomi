@@ -7,7 +7,6 @@ class User extends Controller
 {
     public function login()
     {
-        //return [1,2];
         // 获取session
         $user = session('user','', 'nuomi');
         //var_dump($user);die();
@@ -64,7 +63,7 @@ class User extends Controller
         if(md5($data['password'].$user['code']) != $user['password']) {
             $this->error('密码不正确');
         }
-        model('User')->updateById(['last_login_time'=>time()], $user['id']);
+        model('User')->updateById(['last_login_time'=>time(),'last_login_ip'=>$_SERVER['REMOTE_ADDR'],], $user['id']);
         session('user', $user, 'nuomi');
         $this->success('登录成功', url('index/index'));
     }
